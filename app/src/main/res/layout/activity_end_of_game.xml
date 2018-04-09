@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/PaleAqua"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="598dp"
+            android:layout_height="65dp"
+            android:layout_above="@+id/PlayAgainButton"
+            android:layout_centerHorizontal="true"
+            android:text="Name, you won"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            android:typeface="sans" />
+
+        <Button
+            android:id="@+id/PlayAgainButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@color/colorPrimaryDark"
+            android:text="play again"
+            android:textColor="@color/PaleAqua" />
+
+        <Button
+            android:id="@+id/MainMenuButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/PlayAgainButton"
+            android:layout_below="@+id/PlayAgainButton"
+            android:layout_marginTop="11dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="main menu"
+            android:textColor="@color/PaleAqua" />
+    </RelativeLayout>
+
+</LinearLayout>
