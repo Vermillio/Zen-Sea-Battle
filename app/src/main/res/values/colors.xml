@@ -48,4 +48,11 @@
     <color name="Skobeloff">#0F7173</color>
     <color name="JapaneseIndigo">#254441</color>
     <color name="SteelTeal">#63867F</color>
+
+    <color name="Khaki">#BFB48F</color>
+    <color name="DavysGray">#564E58</color>
+    <color name="RoseTaupe">#904E55</color>
+    <color name="Alabaster2">#F2EFE9</color>
+    <color name="RaisinBlack">#252627</color>
+
 </resources>

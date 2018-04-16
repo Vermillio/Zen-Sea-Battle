@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
         private void initColors() {
             //0 - background color1, 1 - background color2, 2 - text color, 3 - light text color, 4 - buttons color, 5 - buttons text color, 6 - cells 1 color, 7 - cells 2 color, 8+ - ships colors
-            colors = new int[6][11];
+            colors = new int[7][11];
             colors[0][0] = R.color.PaleAqua;
             colors[0][1] = R.color.Glitter;
             colors[0][2] = R.color.Cadet;
@@ -178,6 +178,18 @@ public class MainActivity extends AppCompatActivity {
             colors[5][8] = R.color.SunsetOrange;
             colors[5][9] = R.color.Melon;
             colors[5][10] = R.color.LightCoral;
+
+            colors[6][0]=R.color.Alabaster2;
+            colors[6][1]=R.color.Alabaster;
+            colors[6][2]=R.color.QuickSilver;
+            colors[6][3]=R.color.Alabaster;
+            colors[6][4]=R.color.QuickSilver;
+            colors[6][5]=R.color.Alabaster2;
+            colors[6][6]=R.color.Alabaster;
+            colors[6][7]=R.color.QuickSilver;
+            colors[6][8]=R.color.Khaki;
+            colors[6][9]=R.color.RoseTaupe;
+            colors[6][10]=R.color.DavysGray;
 
         }
 
@@ -582,7 +594,7 @@ public class MainActivity extends AppCompatActivity {
         public boolean isUnknown(index p) {return isFree(p);};
 
         public boolean isNearShip(index p) {
-            return tbl[p.i][p.j].state == 2;
+            return tbl[p.i][p.j].state == 2 || tbl[p.i][p.j].state==4;
         }
         public boolean isInjured(index p) {return isNearShip(p);};
 
@@ -633,7 +645,9 @@ public class MainActivity extends AppCompatActivity {
             for (int i = x; i <= H; ++i)
                 for (int j = y; j <= W; ++j)
                 {
-                    tbl[i][j].setState(2);
+                    if (tbl[i][j].state==2)
+                        tbl[i][j].setState(4);
+                    else tbl[i][j].setState(2);
 //                    tbl[i][j].updateColor(0);
                 }
         }
@@ -662,7 +676,9 @@ public class MainActivity extends AppCompatActivity {
             for (int i = l.i; i <= r.i; ++i)
                 for (int j = l.j; j <= r.j; ++j)
                 {
-                    if (tbl[i][j].state == 2 || tbl[i][j].state==3)
+                    if (tbl[i][j].state==4)
+                        tbl[i][j].setState(2);
+                    else if (tbl[i][j].state == 2 || tbl[i][j].state==3)
                     {
                         tbl[i][j].setState(0);
                         tbl[i][j].updateColor(6);
@@ -780,7 +796,7 @@ public class MainActivity extends AppCompatActivity {
         public int state;
         float alpha;
         public int color;
-        // 0 - empty, 1 - taken, 2 - near ship, 3 - ship
+        // 0 - empty, 1 - taken, 2 - near ship, 3 - ship, 4 - taken twice
         //0 - unknown, 1 - miss, 2 - wounded, 3 - dead
 
         cell(int viewID, boolean taken, int state) {
@@ -791,7 +807,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         public void setState(int state) {
-            if (state < 0 || state > 3)
+            if (state < 0 || state > 4)
                 return;
             this.state = state;
         }
