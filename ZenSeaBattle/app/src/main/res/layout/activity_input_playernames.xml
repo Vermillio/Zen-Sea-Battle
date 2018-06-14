@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/PaleAqua"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <TextView
+            android:id="@+id/Player2title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PLAYER 2"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="24sp"
+            android:layout_below="@+id/space3"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/Player1title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PLAYER 1"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="24sp"
+            android:layout_marginBottom="40dp"
+            android:layout_above="@+id/space3"
+            android:layout_centerHorizontal="true" />
+
+        <EditText
+            android:id="@+id/input_playernames_input1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name"
+            android:textColor="@color/PewterBlue"
+            android:layout_above="@+id/space3"
+            android:layout_centerHorizontal="true" />
+
+        <EditText
+            android:id="@+id/input_playernames_input2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name"
+            android:textColor="@color/PewterBlue"
+            android:layout_marginTop="28dp"
+            android:layout_below="@+id/space3"
+            android:layout_alignStart="@+id/input_playernames_input1" />
+
+        <ImageButton
+            android:id="@+id/input_playernames_button_accept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="?attr/colorControlHighlight"
+            android:scaleType="fitXY"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_chevron_right_white_24dp" />
+
+        <ImageButton
+            android:id="@+id/input_playernames_button_return"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="10dp"
+            android:background="@color/DarkButton"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/ic_chevron_left_white_24dp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/space3" />
+    </RelativeLayout>
+
+</GridLayout>

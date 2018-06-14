@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#000000</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#000000</color>
+    <color name="PewterBlue">#8da7b4</color>
+    <color name="PaleAqua">#bccbde</color>
+    <color name="RussianViolet">#431c5d</color>
+    <color name="ColumbiaBlue">#c2dde6</color>
+    <color name="Glitter">#e6e9f0</color>
+    <color name="Flame">#e05915</color>
+    <color name="Pear">#cdd422</color>
+    <color name="Transparent">#00000000</color>
+
+    <color name="TeaRose">#F79082</color>
+    <color name="PeachOrange">#F7d08a</color>
+    <color name="KeyLime">#e3f09b</color>
+    <color name="PewterBlue2">#87b6a7</color>
+    <color name="DeepKoamaru">#5B5941</color>
+    <color name="RomanSilver">#81A291</color>
+    <color name="Alabaster">#E8EDE7</color>
+
+
+    <color name="FloralWhite">#FFF8F0</color>
+    <color name="Platinum">#E8E2DB</color>
+    <color name="PowderBlue">#AEDFDA</color>
+    <color name="PinkSafron">#FFA851</color>
+    <color name="StormCloud">#4F676B</color>
+    <color name="Thistle">#D8B8E0</color>
+
+    <color name="LanguidLavender">#CCC9DC</color>
+    <color name="QuickSilver">#A7A5B5</color>
+    <color name="YankeesBlue">#1B2A41</color>
+    <color name="EerieBlack">#0C1821</color>
+    <color name="Charcoal">#373F51</color>
+
+    <color name="Aurumetalsaurus">#6C727E</color>
+    <color name="OuterSpace">#454953</color>
+    <color name="BlackCoral">#565B68</color>
+    <color name="Cadet">#5E6472</color>
+    <color name="Soap">#C7C9E9</color>
+    <color name="Melon">#FFAEA6</color>
+    <color name="PaleTurquioise">#B8F2E6</color>
+    <color name="Beige">#FAF3DD</color>
+
+    <color name="LightCoral">#ED8787</color>
+    <color name="SunsetOrange">#F05D5E</color>
+    <color name="Skobeloff">#0F7173</color>
+    <color name="JapaneseIndigo">#254441</color>
+    <color name="SteelTeal">#63867F</color>
+
+    <color name="Khaki">#BFB48F</color>
+    <color name="DavysGray">#564E58</color>
+    <color name="RoseTaupe">#904E55</color>
+    <color name="Alabaster2">#F2EFE9</color>
+    <color name="RaisinBlack">#252627</color>
+
+    <color name="PastelBlue">#A5CBC3</color>
+    <color name="VeryPaleYellow">#D9E5B9</color>
+    <color name="YellowGreen">#85CB33</color>
+    <color name="OliveDrab">#3B341F</color>
+    <color name="PalmLeaf">#698F3F</color>
+    <color name="GunMetal">#2C363F</color>
+    <color name="Pistaccio">#8FC456</color>
+    <color name="TeaGreen">#C0E2CB</color>
+
+    <color name="Onyx">#3A3042</color>
+    <color name="BigFootFeet">#ED9955</color>
+    <color name="Coral">#FF835E</color>
+    <color name="NavajoWhite">#FFE19C</color>
+    <color name="Salmon">#FF8570</color>
+    <color name="Cream">#FEFFCE</color>
+    <color name="DarkButton">#1f000000</color>
+    <color name="KeyLime2">#DDF48B</color>
+
+    <color name="JapaneseIndigo2">#233647</color>
+    <color name="RossoCorsa">#CC100A</color>
+    <color name="RaisinBlack2">#222222</color>
+    <color name="Prune">#70161E</color>
+    <color name="MontantRed">#A50D08</color>
+
+    <color name="LavenderGray">#C1CFCF</color>
+    <color name="CadetBlue">#5C9EAD</color>
+    <color name="MyrtleGreen">#326273</color>
+    <color name="WarmBlack">#0B3C49</color>
+
+    <color name="Gainsboro">#DCDCDC</color>
+    <color name="PastelRed">#FF6B6B</color>
+    <color name="TealBlue">#2F7FA0</color>
+    <color name="LightSeaGreen">#1DA1AA</color>
+
+    <color name="DeepSpaceSparkle">#466365</color>
+    <color name="LightGoldenrodYellow">#F3F9D2</color>
+    <color name="WeldonBlue">#7EAAAA</color>
+
+    <color name="YankeesBlue2">#25283D</color>
+    <color name="OuterSpace2">#474A5B</color>
+    <color name="TeaGreen2">#CFFFB3</color>
+    <color name="ColumbiaBlue2">#C3DFE0</color>
+    <color name="PaleCerulean">#9EB8E5</color>
+
+    <color name="Jonquil">#F7D13B</color>
+    <color name="GunMetal2">#292F36</color>
+    <color name="Taupe">#878787</color>
+
+    <color name="Linen">#F8F4E3</color>
+    <color name="DarkPurple">#321B30</color>
+    <color name="BrightTurquoise">#11E0BD</color>
+    <color name="PastelRed2">#FF6666</color>
+    <color name="DeepTaupe">#7F5561</color>
+
+    <color name="CosmicLatte">#FFFAE3</color>
+    <color name="AeroBlue">#D2F1E4</color>
+    <color name="PewterBlue3">#89B5C1</color>
+    <color name="OldLavender">#6B6277</color>
+    <color name="Onyx2">#363946</color>
+
+    <color name="Beige2">#EBF5DF</color>
+    <color name="Ebony">#535D5E</color>
+    <color name="PaleCerulean2">#98C1D9</color>
+    <color name="PastelYellow">#FFFC91</color>
+    <color name="BurlyWood">#E8B487</color>
+
+    <color name="DesertSand">#DBC7B1</color>
+    <color name="SatinSheenGold">#CCA43B</color>
+    <color name="Jet">#363636</color>
+    <color name="PalmLeaf2">#698F3F</color>
+    <color name="YankeesBlue3">#242F40</color>
+
+
+</resources>

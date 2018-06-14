@@ -48,7 +48,7 @@
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="60sp"
+            android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -66,14 +66,16 @@
         <Button
             android:id="@+id/l1_button_start"
             style="@style/Widget.AppCompat.Button.Borderless.Colored"
-            android:layout_width="160dp"
+            android:layout_width="170dp"
             android:layout_height="48dp"
             android:layout_below="@+id/ShipLogo"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="43dp"
             android:elevation="0dp"
+            android:fontFamily="sans-serif"
             android:text="START"
             android:textAlignment="center"
+            android:textAllCaps="false"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             tools:layout_editor_absoluteX="161dp"
@@ -84,63 +86,67 @@
             style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="125dp"
             android:layout_height="48dp"
+            android:layout_alignEnd="@+id/l1_button_credits"
             android:layout_alignLeft="@+id/l1_button_credits"
             android:layout_alignStart="@+id/l1_button_credits"
             android:layout_below="@+id/l1_button_credits"
+            android:fontFamily="sans-serif"
             android:text="SETTINGS"
             android:textAlignment="center"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             tools:layout_editor_absoluteX="161dp"
-            tools:layout_editor_absoluteY="319dp"
-            android:layout_alignEnd="@+id/l1_button_credits" />
+            tools:layout_editor_absoluteY="319dp" />
 
         <Button
             android:id="@+id/l1_button_tutorial"
             style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="125dp"
             android:layout_height="48dp"
+            android:layout_alignEnd="@+id/l1_button_start"
+            android:layout_alignStart="@+id/l1_button_start"
+            android:layout_below="@+id/l1_button_start"
+            android:fontFamily="sans-serif"
             android:text="TUTORIAL"
             android:textAlignment="center"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             tools:layout_editor_absoluteX="161dp"
-            tools:layout_editor_absoluteY="319dp"
-            android:layout_below="@+id/l1_button_start"
-            android:layout_alignEnd="@+id/l1_button_start"
-            android:layout_alignStart="@+id/l1_button_start" />
+            tools:layout_editor_absoluteY="319dp" />
 
         <Button
             android:id="@+id/l1_button_credits"
             style="@style/Widget.AppCompat.Button.Borderless.Colored"
-            android:layout_width="130dp"
+            android:layout_width="140dp"
             android:layout_height="48dp"
+            android:layout_alignEnd="@+id/l1_button_tutorial"
             android:layout_alignLeft="@+id/l1_button_tutorial"
             android:layout_alignStart="@+id/l1_button_tutorial"
             android:layout_below="@+id/l1_button_tutorial"
+            android:fontFamily="sans-serif"
             android:text="LEADERBOARD"
             android:textAlignment="center"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             tools:layout_editor_absoluteX="161dp"
-            tools:layout_editor_absoluteY="319dp"
-            android:layout_alignEnd="@+id/l1_button_tutorial" />
+            tools:layout_editor_absoluteY="319dp" />
 
         <Button
             android:id="@+id/l1_button_exit"
             style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="125dp"
             android:layout_height="48dp"
+            android:layout_alignEnd="@+id/l1_button_settings"
             android:layout_alignLeft="@+id/l1_button_settings"
             android:layout_alignStart="@+id/l1_button_settings"
             android:layout_below="@+id/l1_button_settings"
+            android:fontFamily="sans-serif"
             android:text="EXIT"
             android:textAlignment="center"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             tools:layout_editor_absoluteX="161dp"
-            tools:layout_editor_absoluteY="319dp"
-            android:layout_alignEnd="@+id/l1_button_settings" />
+            tools:layout_editor_absoluteY="319dp" />
 
 
 

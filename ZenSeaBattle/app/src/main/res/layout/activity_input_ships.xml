@@ -1328,46 +1328,47 @@
             </LinearLayout>
         </LinearLayout>
 
-        <Button
-            android:id="@+id/PlayAgainButton"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_below="@+id/EnemyTable"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1.12"
-            android:elevation="0dp"
-            android:text="BACK"
-            android:textAppearance="@style/TextAppearance.AppCompat"
-            android:textColor="@color/PaleAqua"
-            android:textSize="28sp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/OkButton"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginBottom="5dp"
-            android:layout_marginRight="5dp"
-            android:elevation="0dp"
-            android:text="OK"
-            android:textAppearance="@style/TextAppearance.AppCompat"
-            android:textColor="@color/PaleAqua"
-            android:textSize="28sp" />
+            <ImageButton
+                android:id="@+id/PlayAgainButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="20dp"
+                android:layout_marginStart="5dp"
+                android:background="@color/DarkButton"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/ic_chevron_left_white_24dp" />
 
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="50sp"
-            android:layout_alignBottom="@+id/EnemyTable"
-            android:layout_centerHorizontal="true"
-            android:text="Place your ships"
-            android:textColor="@color/PewterBlue"
-            android:textSize="24sp" />
+            <ImageButton
+                android:id="@+id/OkButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignTop="@+id/PlayAgainButton"
+                android:layout_marginEnd="5dp"
+                android:background="?attr/colorControlHighlight"
+                android:scaleType="fitXY"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/ic_chevron_right_white_24dp" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="50sp"
+                android:paddingTop="5dp"
+                android:text="Place your ships"
+                android:textAlignment="center"
+                android:textColor="@color/PewterBlue"
+                android:textSize="18sp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_alignTop="@+id/PlayAgainButton" />
+        </RelativeLayout>
 
     </RelativeLayout>
 

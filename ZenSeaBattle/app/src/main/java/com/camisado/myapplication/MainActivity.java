@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.support.v7.app.AppCompatActivity;
@@ -17,7 +18,9 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
@@ -32,13 +35,12 @@ import java.util.concurrent.ThreadLocalRandom;
 public class MainActivity extends AppCompatActivity {
     int FIELD_SIZE=10;
     ApplyTheme applyTheme;
-    player_info player_1, player_2;
+    Player player_1, player_2;
     private int currentLocation;
     private boolean SinglePlayer;
     private GestureDetector gD;
     private ShipsInput shipsInput;
     private GameHandler gameHandler;
-
 
 
     private String str(int n) {
@@ -86,6 +88,9 @@ public class MainActivity extends AppCompatActivity {
         int theme;
         int defaultThemeValue;
         int prevLocation;
+
+        int buttonSize=min(getDisplayWidth(), getDisplayWidth())/8;
+
         ApplyTheme() {
             defaultThemeValue = 0;
             readTheme();
@@ -106,26 +111,26 @@ public class MainActivity extends AppCompatActivity {
 
         private void initColors() {
             //0 - background color1, 1 - background color2, 2 - text color, 3 - light text color, 4 - buttons color, 5 - buttons text color, 6 - cells 1 color, 7 - cells 2 color, 8+ - ships colors
-            colors = new int[7][11];
-            colors[0][0] = R.color.PaleAqua;
-            colors[0][1] = R.color.Glitter;
-            colors[0][2] = R.color.Cadet;
-            colors[0][3] = R.color.PewterBlue;
-            colors[0][4] = R.color.PewterBlue;
-            colors[0][5] = R.color.PaleAqua;
-            colors[0][6] = R.color.Glitter;
-            colors[0][7] = R.color.PewterBlue;
-            colors[0][8] = R.color.Pear;
-            colors[0][9] = R.color.Flame;
-            colors[0][10] = R.color.RussianViolet;
+            colors = new int[17][11];
+            colors[0][0] = R.color.FloralWhite;
+            colors[0][1] = R.color.FloralWhite;
+            colors[0][2] = R.color.WarmBlack;
+            colors[0][3] = R.color.DarkButton;
+            colors[0][4] = R.color.DarkButton;
+            colors[0][5] = R.color.FloralWhite;
+            colors[0][6] = R.color.DarkButton;
+            colors[0][7] = R.color.WarmBlack;
+            colors[0][8] = R.color.CadetBlue;
+            colors[0][9] = R.color.MyrtleGreen;
+            colors[0][10] = R.color.LavenderGray;
 
-            colors[1][0] = R.color.RomanSilver;
+            colors[1][0] = R.color.Ebony;
             colors[1][1] = R.color.Alabaster;
-            colors[1][2] = R.color.PewterBlue2;
-            colors[1][3] = R.color.SteelTeal;
-            colors[1][4] = R.color.PewterBlue2;
-            colors[1][5] = R.color.RomanSilver;
-            colors[1][6] = R.color.SteelTeal;
+            colors[1][2] = R.color.RomanSilver;
+            colors[1][3] = R.color.DarkButton;
+            colors[1][4] = R.color.DarkButton;
+            colors[1][5] = R.color.Ebony;
+            colors[1][6] = R.color.DarkButton;
             colors[1][7] = R.color.PewterBlue2;
             colors[1][8] = R.color.TeaRose;
             colors[1][9] = R.color.KeyLime;
@@ -133,36 +138,36 @@ public class MainActivity extends AppCompatActivity {
 
             colors[2][0] = R.color.FloralWhite;
             colors[2][1] = R.color.Platinum;
-            colors[2][2] = R.color.StormCloud;
-            colors[2][3] = R.color.Platinum;
-            colors[2][4] = R.color.Platinum;
+            colors[2][2] = R.color.Taupe;
+            colors[2][3] = R.color.DarkButton;
+            colors[2][4] = R.color.DarkButton;
             colors[2][5] = R.color.FloralWhite;
-            colors[2][6] = R.color.Platinum;
-            colors[2][7] = R.color.FloralWhite;
+            colors[2][6] = R.color.DarkButton;
+            colors[2][7] = R.color.Taupe;
             colors[2][8] = R.color.PowderBlue;
             colors[2][9] = R.color.PinkSafron; //TODO: make orange softer
             colors[2][10] = R.color.Thistle;
 
             colors[3][0] = R.color.LanguidLavender;
             colors[3][1] = R.color.QuickSilver;
-            colors[3][2] = R.color.colorPrimaryDark;
-            colors[3][3] = R.color.QuickSilver;
-            colors[3][4] = R.color.QuickSilver;
+            colors[3][2] = R.color.EerieBlack;
+            colors[3][3] = R.color.DarkButton;
+            colors[3][4] = R.color.DarkButton;
             colors[3][5] = R.color.LanguidLavender;
-            colors[3][6] = R.color.QuickSilver;
-            colors[3][7] = R.color.LanguidLavender;
+            colors[3][6] = R.color.DarkButton;
+            colors[3][7] = R.color.QuickSilver;
             colors[3][8] = R.color.EerieBlack;
             colors[3][9] = R.color.YankeesBlue;
             colors[3][10] = R.color.Charcoal;
 
             colors[4][0] = R.color.OuterSpace;
             colors[4][1] = R.color.BlackCoral;
-            colors[4][2] = R.color.Cadet;
-            colors[4][3] = R.color.BlackCoral;
-            colors[4][4] = R.color.Cadet;
+            colors[4][2] = R.color.QuickSilver;
+            colors[4][3] = R.color.DarkButton;
+            colors[4][4] = R.color.DarkButton;
             colors[4][5] = R.color.OuterSpace;
             colors[4][6] = R.color.BlackCoral;
-            colors[4][7] = R.color.Aurumetalsaurus;
+            colors[4][7] = R.color.QuickSilver;
             colors[4][8] = R.color.Melon;
             colors[4][9] = R.color.Soap;
             colors[4][10] = R.color.PaleTurquioise;
@@ -170,27 +175,171 @@ public class MainActivity extends AppCompatActivity {
             colors[5][0] = R.color.BlackCoral;
             colors[5][1] = R.color.Cadet;
             colors[5][2] = R.color.OuterSpace;
-            colors[5][3] = R.color.Cadet;
-            colors[5][4] = R.color.Cadet;
+            colors[5][3] = R.color.DarkButton;
+            colors[5][4] = R.color.DarkButton;
             colors[5][5] = R.color.BlackCoral;
-            colors[5][6] = R.color.Cadet;
-            colors[5][7] = R.color.StormCloud;
+            colors[5][6] = R.color.DarkButton;
+            colors[5][7] = R.color.OuterSpace;
             colors[5][8] = R.color.SunsetOrange;
             colors[5][9] = R.color.Melon;
             colors[5][10] = R.color.LightCoral;
 
-            colors[6][0]=R.color.Alabaster2;
-            colors[6][1]=R.color.Alabaster;
-            colors[6][2]=R.color.QuickSilver;
-            colors[6][3]=R.color.Alabaster;
-            colors[6][4]=R.color.QuickSilver;
-            colors[6][5]=R.color.Alabaster2;
-            colors[6][6]=R.color.Alabaster;
-            colors[6][7]=R.color.QuickSilver;
-            colors[6][8]=R.color.Khaki;
-            colors[6][9]=R.color.RoseTaupe;
-            colors[6][10]=R.color.DavysGray;
+//            colors[6][0]=R.color.Alabaster2;
+//            colors[6][1]=R.color.Alabaster;
+//            colors[6][2]=R.color.QuickSilver;
+//            colors[6][3]=R.color.Alabaster;
+//            colors[6][4]=R.color.QuickSilver;
+//            colors[6][5]=R.color.Alabaster2;
+//            colors[6][6]=R.color.Alabaster;
+//            colors[6][7]=R.color.QuickSilver;
+//            colors[6][8]=R.color.Khaki;
+//            colors[6][9]=R.color.RoseTaupe;
+//            colors[6][10]=R.color.DavysGray;
+//
+//            colors[6][0]=R.color.GunMetal;
+//            colors[6][1]=R.color.OuterSpace;
+//            colors[6][2]=R.color.VeryPaleYellow;
+//            colors[6][3]=R.color.VeryPaleYellow;
+//            colors[6][4]=R.color.VeryPaleYellow;
+//            colors[6][5]=R.color.GunMetal;
+//            colors[6][6]=R.color.VeryPaleYellow;
+//            colors[6][7]=R.color.StormCloud;
+//            colors[6][8]=R.color.YellowGreen;
+//            colors[6][9]=R.color.PalmLeaf;
+//            colors[6][10]=R.color.Pistaccio;
 
+
+            colors[6][0] = R.color.Linen;
+            colors[6][1] = R.color.Linen;
+            colors[6][2] = R.color.DarkPurple;
+            colors[6][3] = R.color.DarkPurple;
+            colors[6][4] = R.color.DarkPurple;
+            colors[6][5] = R.color.Linen;
+            colors[6][6] = R.color.DarkButton;
+            colors[6][7] = R.color.DarkPurple;
+            colors[6][8] = R.color.PastelRed2;
+            colors[6][9] = R.color.BrightTurquoise;
+            colors[6][10] = R.color.DeepTaupe;
+
+            colors[7][0]=R.color.FloralWhite;
+            colors[7][1]=R.color.FloralWhite;
+            colors[7][2]=R.color.JapaneseIndigo2;
+            colors[7][3]=R.color.JapaneseIndigo2;
+            colors[7][4]=R.color.JapaneseIndigo2;
+            colors[7][5]=R.color.FloralWhite;
+            colors[7][6]=R.color.DarkButton;
+            colors[7][7]=R.color.JapaneseIndigo2;
+            colors[7][8]=R.color.LightCoral;
+            colors[7][9]=R.color.MontantRed;
+            colors[7][10]=R.color.Prune;
+
+            colors[8][0] = R.color.FloralWhite;
+            colors[8][1] = R.color.FloralWhite;
+            colors[8][2] = R.color.QuickSilver;
+            colors[8][3] = R.color.Gainsboro;
+            colors[8][4] = R.color.Gainsboro;
+            colors[8][5] = R.color.FloralWhite;
+            colors[8][6] = R.color.Gainsboro;
+            colors[8][7] = R.color.QuickSilver;
+            colors[8][8] = R.color.PastelRed;
+            colors[8][9] = R.color.TealBlue;
+            colors[8][10] = R.color.LightSeaGreen;
+
+            colors[9][0] = R.color.DeepSpaceSparkle;
+            colors[9][1] = R.color.LightGoldenrodYellow;
+            colors[9][2] = R.color.WeldonBlue;
+            colors[9][3] = R.color.DarkButton;
+            colors[9][4] = R.color.DarkButton;
+            colors[9][5] = R.color.DeepSpaceSparkle;
+            colors[9][6] = R.color.DarkButton;
+            colors[9][7] = R.color.WeldonBlue;
+            colors[9][8] = R.color.LightGoldenrodYellow;
+            colors[9][9] = R.color.LightGoldenrodYellow;
+            colors[9][10] = R.color.LightGoldenrodYellow;
+
+            colors[10][0] = R.color.OuterSpace2;
+            colors[10][1] = R.color.YankeesBlue2;
+            colors[10][2] = R.color.YankeesBlue2;
+            colors[10][3] = R.color.DarkButton;
+            colors[10][4] = R.color.DarkButton;
+            colors[10][5] = R.color.YankeesBlue2;
+            colors[10][6] = R.color.DarkButton;
+            colors[10][7] = R.color.YankeesBlue2;
+            colors[10][8] = R.color.TeaGreen2;
+            colors[10][9] = R.color.ColumbiaBlue2;
+            colors[10][10] = R.color.PaleCerulean;
+
+            colors[11][0] = R.color.FloralWhite;
+            colors[11][1] = R.color.Jonquil;
+            colors[11][2] = R.color.GunMetal2;
+            colors[11][3] = R.color.DarkButton;
+            colors[11][4] = R.color.GunMetal2;
+            colors[11][5] = R.color.FloralWhite;
+            colors[11][6] = R.color.DarkButton;
+            colors[11][7] = R.color.Jonquil;
+            colors[11][8] = R.color.Taupe;
+            colors[11][9] = R.color.GunMetal2;
+            colors[11][10] = R.color.Onyx2;
+
+            colors[12][0] = R.color.Cream;
+            colors[12][1] = R.color.KeyLime;
+            colors[12][2] = R.color.Onyx;
+            colors[12][3] = R.color.Onyx;
+            colors[12][4] = R.color.Onyx;
+            colors[12][5] = R.color.Cream;
+            colors[12][6] = R.color.DarkButton;
+            colors[12][7] = R.color.Onyx;
+            colors[12][8] = R.color.Coral;
+            colors[12][9] = R.color.NavajoWhite;
+            colors[12][10] = R.color.KeyLime;
+
+            colors[13][0] = R.color.CosmicLatte;
+            colors[13][1] = R.color.CosmicLatte;
+            colors[13][2] = R.color.Onyx2;
+            colors[13][3] = R.color.Onyx2;
+            colors[13][4] = R.color.Onyx2;
+            colors[13][5] = R.color.CosmicLatte;
+            colors[13][6] = R.color.DarkButton;
+            colors[13][7] = R.color.Onyx2;
+            colors[13][8] = R.color.AeroBlue;
+            colors[13][9] = R.color.PewterBlue3;
+            colors[13][10] = R.color.OldLavender;
+
+            colors[14][0] = R.color.Ebony;
+            colors[14][1] = R.color.Ebony;
+            colors[14][2] = R.color.Beige2;
+            colors[14][3] = R.color.Beige2;
+            colors[14][4] = R.color.Beige2;
+            colors[14][5] = R.color.Ebony;
+            colors[14][6] = R.color.DarkButton;
+            colors[14][7] = R.color.Beige2;
+            colors[14][8] = R.color.PastelYellow;
+            colors[14][9] = R.color.BurlyWood;
+            colors[14][10] = R.color.PaleCerulean2;
+
+            colors[15][0] = R.color.FloralWhite;
+            colors[15][1] = R.color.FloralWhite;
+            colors[15][2] = R.color.Taupe;
+            colors[15][3] = R.color.DarkButton;
+            colors[15][4] = R.color.DarkButton;
+            colors[15][5] = R.color.FloralWhite;
+            colors[15][6] = R.color.DarkButton;
+            colors[15][7] = R.color.Taupe;
+            colors[15][8] = R.color.SatinSheenGold;
+            colors[15][9] = R.color.PalmLeaf2;
+            colors[15][10] = R.color.YankeesBlue3;
+
+            colors[16][0] = R.color.FloralWhite;
+            colors[16][1] = R.color.FloralWhite;
+            colors[16][2] = R.color.Taupe;
+            colors[16][3] = R.color.DarkButton;
+            colors[16][4] = R.color.DarkButton;
+            colors[16][5] = R.color.FloralWhite;
+            colors[16][6] = R.color.DarkButton;
+            colors[16][7] = R.color.Taupe;
+            colors[16][8] = R.color.SatinSheenGold;
+            colors[16][9] = R.color.PalmLeaf2;
+            colors[16][10] = R.color.YankeesBlue3;
         }
 
 
@@ -263,7 +412,7 @@ public class MainActivity extends AppCompatActivity {
         };
 
         private void mainMenu() {
-            findViewById(R.id.RelativeLayout).setBackgroundColor(getColor(colors[theme][1]));
+            findViewById(R.id.RelativeLayout).setBackgroundColor(getColor(colors[theme][0]));
             findViewById(R.id.BackgroundIm).setBackgroundColor(getColor(colors[theme][0]));
             ((TextView) findViewById(R.id.textView)).setTextColor(getColor(colors[theme][2]));
             ((Button) findViewById(R.id.l1_button_start)).setTextColor(getColor(colors[theme][2]));
@@ -277,50 +426,97 @@ public class MainActivity extends AppCompatActivity {
             ((Button) findViewById(R.id.l1_button_exit)).setTextColor(getColor(colors[theme][2]));
             ((Button) findViewById(R.id.l1_button_exit)).setBackgroundColor(getColor(R.color.Transparent));
             ((ImageView) findViewById(R.id.ShipLogo)).setImageResource(getDrawableID("shiplogo" + theme));
+
+            //set font
+            setFont(R.id.textView, "DOTSHORM.ttf");
+            setFont(R.id.l1_button_start, "DOTSHORM.ttf");
+            setFont(R.id.l1_button_credits, "DOTSHORM.ttf");
+            setFont(R.id.l1_button_exit, "DOTSHORM.ttf");
+            setFont(R.id.l1_button_settings, "DOTSHORM.ttf");
+            setFont(R.id.l1_button_tutorial, "DOTSHORM.ttf");
+
         }
 
         private void playernameScreen() {
             findViewById(R.id.RelativeLayout).setBackgroundColor(getColor(colors[theme][0]));
             ((EditText) findViewById(R.id.input_playernames_input1)).setTextColor(getColor(colors[theme][3]));
             ((EditText) findViewById(R.id.input_playernames_input2)).setTextColor(getColor(colors[theme][3]));
-            ((Button) findViewById(R.id.input_playernames_button_accept)).setTextColor(getColor(colors[theme][5]));
-            ((Button) findViewById(R.id.input_playernames_button_return)).setTextColor(getColor(colors[theme][5]));
-            findViewById(R.id.input_playernames_button_accept).setBackgroundColor(getColor(colors[theme][4]));
-            findViewById(R.id.input_playernames_button_return).setBackgroundColor(getColor(colors[theme][4]));
+            ((ImageButton) findViewById(R.id.input_playernames_button_accept)).setColorFilter(getColor(colors[theme][4]), PorterDuff.Mode.MULTIPLY);
+            ((ImageButton) findViewById(R.id.input_playernames_button_return)).setColorFilter(getColor(colors[theme][4]), PorterDuff.Mode.MULTIPLY);
+            findViewById(R.id.input_playernames_button_accept).setBackgroundColor(getColor(R.color.Transparent));
+            findViewById(R.id.input_playernames_button_return).setBackgroundColor(getColor(R.color.Transparent));
             ((TextView) findViewById(R.id.Player1title)).setTextColor(getColor(colors[theme][2]));
             ((TextView) findViewById(R.id.Player2title)).setTextColor(getColor(colors[theme][2]));
+
+            //set height width
+            setViewHeight(R.id.input_playernames_button_accept, buttonSize);
+            setViewWidth(R.id.input_playernames_button_accept, buttonSize);
+            setViewHeight(R.id.input_playernames_button_return, buttonSize);
+            setViewWidth(R.id.input_playernames_button_return, buttonSize);
+
+            //set font
+            setFont(R.id.input_playernames_input1, "DOTSHORM.ttf");
+            setFont(R.id.input_playernames_input2, "DOTSHORM.ttf");
+            setFont(R.id.Player1title, "DOTSHORM.ttf");
+            setFont(R.id.Player2title, "DOTSHORM.ttf");
         };
 
         private void waitingScreen() {
             ((TextView) findViewById(R.id.textView)).setTextColor(getColor(colors[theme][2]));
             findViewById(R.id.RelativeLayout).setBackgroundColor(getColor(colors[theme][0]));
-            ((Button) findViewById(R.id.button)).setTextColor(getColor(colors[theme][5]));
-            findViewById(R.id.button).setBackgroundColor(getColor(colors[theme][4]));
+            ((ImageButton)findViewById(R.id.button)).setColorFilter(getColor(colors[theme][2]));
+            Animation pulse = AnimationUtils.loadAnimation(MainActivity.this, R.anim.pulse);
+            findViewById(R.id.button).startAnimation(pulse);
+
+            //set font
+            setFont(R.id.textView, "DOTSHORM.ttf");
         }
 
         private void shipsInput() {
             findViewById(R.id.RelativeLayout).setBackgroundColor(getColor(colors[theme][0]));
-            findViewById(R.id.OkButton).setBackgroundColor(getColor(colors[theme][4]));
-            findViewById(R.id.PlayAgainButton).setBackgroundColor(getColor(colors[theme][4]));
-            ((Button) findViewById(R.id.OkButton)).setTextColor(getColor(colors[theme][5]));
-            ((Button) findViewById(R.id.PlayAgainButton)).setTextColor(getColor(colors[theme][5]));
             ((TextView) findViewById(R.id.textView6)).setTextColor(getColor(colors[theme][3]));
+            setMargins(R.id.textView6, buttonSize+5, 0, buttonSize+5, 0);
+
+            ImageButton OkButton=(ImageButton)findViewById(R.id.OkButton);
+            OkButton.setColorFilter(getColor(colors[theme][4]), PorterDuff.Mode.MULTIPLY);
+            findViewById(R.id.OkButton).setBackgroundColor(getColor(R.color.Transparent));
+            setMargins(R.id.OkButton, 0, 0, 0, 19);
+            setViewHeight(R.id.OkButton, buttonSize);
+            setViewWidth(R.id.OkButton, buttonSize);
+
+            ImageButton BackButton=(ImageButton)findViewById(R.id.PlayAgainButton);
+            setMargins(R.id.PlayAgainButton, 0, 0, 0, 19);
+            setViewHeight(R.id.PlayAgainButton, buttonSize);
+            setViewWidth(R.id.PlayAgainButton, buttonSize);
+            BackButton.setBackgroundColor(getColor(R.color.Transparent));
+            BackButton.setColorFilter(getColor(colors[theme][4]), PorterDuff.Mode.MULTIPLY);
+
+            //set font
+            setFont(R.id.textView6, "DOTSHORM.ttf");
         }
 
         private void nextPlayer() {
             findViewById(R.id.RelativeLayout).setBackgroundColor(getColor(colors[theme][0]));
-            ((Button) findViewById(R.id.NextButton)).setTextColor(getColor(colors[theme][5]));
-            findViewById(R.id.NextButton).setBackgroundColor(getColor(colors[theme][4]));
+            ((Button) findViewById(R.id.NextButton)).setTextColor(getColor(colors[theme][0]));
+            findViewById(R.id.NextButton).setBackgroundColor(getColor(colors[theme][2]));
             findViewById(R.id.HelpButton).setBackgroundColor(getColor(R.color.Transparent));
-            ((ImageView)findViewById(R.id.HelpButton)).setColorFilter(getColor(colors[theme][2]), PorterDuff.Mode.MULTIPLY);
+            ((ImageButton)findViewById(R.id.HelpButton)).setColorFilter(getColor(colors[theme][2]));
             Animation pulse = AnimationUtils.loadAnimation(MainActivity.this, R.anim.pulse);
             findViewById(R.id.HelpButton).startAnimation(pulse);
+
+            //font
+            setFont(R.id.NextButton, "DOTSHORM.ttf");
         };
 
         private void settingsScreen() {
             findViewById(R.id.RelativeLayout).setBackgroundColor(getColor(colors[theme][0]));
             ((TextView)findViewById(R.id.textView4)).setTextColor(getColor(colors[theme][2]));
             ((TextView)findViewById(R.id.textView8)).setTextColor(getColor(colors[theme][2]));
+
+            //font
+            setFont(R.id.textView4, "DOTSHORM.ttf");
+            setFont(R.id.textView8, "DOTSHORM.ttf");
+
         } // TODO: WRITE
 
         private void gameMode() {
@@ -329,15 +525,27 @@ public class MainActivity extends AppCompatActivity {
             findViewById(R.id.SingleplayerButton).setBackgroundColor(getColor(R.color.Transparent));
             ((Button)findViewById(R.id.MultiplayerButton)).setTextColor(getColor(colors[theme][2]));
             findViewById(R.id.MultiplayerButton).setBackgroundColor(getColor(R.color.Transparent));
+
+            //font
+            setFont(R.id.SingleplayerButton, "DOTSHORM.ttf");
+            setFont(R.id.MultiplayerButton, "DOTSHORM.ttf");
         }
 
         private void endOfGame() {
             findViewById(R.id.MainMenuButton).setBackgroundColor(getColor(colors[theme][4]));
             findViewById(R.id.PlayAgainButton).setBackgroundColor(getColor(colors[theme][4]));
-            ((Button) findViewById(R.id.MainMenuButton)).setTextColor(getColor(colors[theme][5]));
-            ((Button) findViewById(R.id.PlayAgainButton)).setTextColor(getColor(colors[theme][5]));
+            ((Button) findViewById(R.id.MainMenuButton)).setTextColor(getColor(colors[theme][2]));
+            ((Button) findViewById(R.id.PlayAgainButton)).setTextColor(getColor(colors[theme][2]));
+            ((Button) findViewById(R.id.MainMenuButton)).setBackgroundColor(getColor(R.color.Transparent));
+            ((Button) findViewById(R.id.PlayAgainButton)).setBackgroundColor(getColor(R.color.Transparent));
             findViewById(R.id.RelativeLayout).setBackgroundColor(getColor(colors[theme][0]));
             ((TextView) findViewById(R.id.textView6)).setTextColor(getColor(colors[theme][2]));
+
+            //font
+            setFont(R.id.MainMenuButton, "DOTSHORM.ttf");
+            setFont(R.id.PlayAgainButton, "DOTSHORM.ttf");
+            setFont(R.id.textView6, "DOTSHORM.ttf");
+
         }
 
         private void help() {
@@ -347,9 +555,26 @@ public class MainActivity extends AppCompatActivity {
             ((ImageView)findViewById(R.id.help_arrow2)).setColorFilter(colors[theme][2], PorterDuff.Mode.MULTIPLY);
         }
 
+        public void setMargins(int id, int left, int top, int right, int bottom) {
+            RelativeLayout.LayoutParams p = (RelativeLayout.LayoutParams)findViewById(id).getLayoutParams();
+            p.setMargins(left, top, right, bottom);
+            findViewById(id).setLayoutParams(p);
+        }
+
+        public void setFont(int textViewId, String font) {
+            ((TextView)findViewById(textViewId)).setTypeface(Typeface.createFromAsset(getAssets(), "fonts/"+font));
+        }
+
+        public void setInvisible(int id) {
+            findViewById(id).setVisibility(View.INVISIBLE);
+        }
+
+        public void setVisible(int id) {
+            findViewById(id).setVisibility(View.VISIBLE);
+        }
     }
 
-    private final class player_info {
+    private final class Player {
         private String name;
 
         Table table;
@@ -361,7 +586,7 @@ public class MainActivity extends AppCompatActivity {
 
         public int shipsCounts[];
 
-        public player_info(String name) {
+        public Player(String name) {
             this.name = name;
             init();
         }
@@ -403,7 +628,6 @@ public class MainActivity extends AppCompatActivity {
             }
             else return false;
         }
-
 
         boolean checkMoveStart(float sx, float sy)
         {
@@ -491,6 +715,13 @@ public class MainActivity extends AppCompatActivity {
             --shipsCounts[sz];
             --ships_already_input;
             return true;
+        }
+
+        public void increaseScore() {
+            //SharedPreferences sp = MainActivity.this.getPreferences(Context.MODE_PRIVATE);
+            //SharedPreferences.Editor editor = sp.edit();
+            //editor.putInt(getString(R.string.saved_theme_key), theme);
+            //editor.apply();
         }
     }
 
@@ -679,10 +910,8 @@ public class MainActivity extends AppCompatActivity {
                     if (tbl[i][j].state==4)
                         tbl[i][j].setState(2);
                     else if (tbl[i][j].state == 2 || tbl[i][j].state==3)
-                    {
                         tbl[i][j].setState(0);
-                        tbl[i][j].updateColor(6);
-                    }
+                    tbl[i][j].updateColor(6);
                 }
         }
 
@@ -790,6 +1019,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     class cell {
+        private int additionalColor = 0;
         public int viewID;
         LayerDrawable drawable;
         public boolean taken;
@@ -813,14 +1043,23 @@ public class MainActivity extends AppCompatActivity {
         }
 
         public void updateColor(int color) {
-            Drawable d = this.drawable.getDrawable(0);
-            d = applyTheme.updateColor(d, color);
-            this.drawable.setDrawable(0, d);
             this.color=color;
+            Drawable d1 = this.drawable.getDrawable(0);
+            d1 = applyTheme.updateColor(d1, color);
+            this.drawable.setDrawable(0, d1);
+        }
+
+        public void updateSecondColor() {
+            if (drawable.getNumberOfLayers()!=2)
+                return;
+            Drawable d2 = drawable.getDrawable(1);
+            d2 = applyTheme.updateColor(d2, additionalColor);
+            this.drawable.setDrawable(1, d2);
         }
 
         public void show() {
             updateColor(this.color);
+            updateSecondColor();
             ((ImageView)findViewById(viewID)).setImageDrawable(drawable);
             ((ImageView)findViewById(viewID)).setAlpha(alpha);
         }
@@ -838,8 +1077,6 @@ public class MainActivity extends AppCompatActivity {
             d = applyTheme.updateColor(d, 7);
             this.drawable.addLayer(d);
             ((ImageView)findViewById(viewID)).setImageDrawable(this.drawable);
-//            drawable=applyTheme.mergeDrawables(this.drawable, getDrawable(drawableId), color);
-//            int n = 4;
         }
 
 
@@ -900,13 +1137,13 @@ public class MainActivity extends AppCompatActivity {
         boolean checkEndOfInput() {
             if (first_input) {
                 if (player_1.ships_already_input == 10) {
-                    first_input = false;
-                    initTable();
-                    ((TextView)findViewById(R.id.textView6)).setText(player_2.name + ", place your ships");
+                    findViewById(R.id.OkButton).setVisibility(View.VISIBLE);
                 }
                 return false;
-            } else if (player_2.ships_already_input == 10)
+            } else if (player_2.ships_already_input == 10) {
+                findViewById(R.id.OkButton).setVisibility(View.VISIBLE);
                 return true;
+            }
             return false;
         }
 
@@ -921,13 +1158,20 @@ public class MainActivity extends AppCompatActivity {
                 if (gD.onTouchEvent(motionEvent)) {
                     start_x = motionEvent.getRawX();
                     start_y = motionEvent.getRawY();
-                    boolean deleted;
-                    if (first_input)
-                        deleted = player_1.deleteShip(start_x, start_y);
-                    else deleted = player_2.deleteShip(start_x, start_y);
-
-                    if (deleted)
+                    if (first_input) {
+                        if ( player_1.deleteShip(start_x, start_y)) {
+                            if (player_1.ships_already_input==9)
+                                applyTheme.setInvisible(R.id.OkButton);
+                            show();
+                            return true;
+                        }
+                    }
+                    else if (player_2.deleteShip(start_x, start_y)) {
+                        if (player_2.ships_already_input==9)
+                            applyTheme.setInvisible(R.id.OkButton);
+                        show();
                         return true;
+                    }
                 }
                 switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN:
@@ -964,6 +1208,7 @@ public class MainActivity extends AppCompatActivity {
                             movable = player_2.placeShip(start_x, start_y, prev_x, prev_y);
                             player_2.table.show();
                         }
+                        checkEndOfInput();
                         break;
                     default:
                         return false;
@@ -977,17 +1222,21 @@ public class MainActivity extends AppCompatActivity {
         {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (checkEndOfInput())
+                if (player_2.ships_already_input==10) {
                     toGame();
-                else if (first_input)
-                    player_1.table.show();
-                else player_2.table.show();
+                }
+                else {
+                    first_input = false;
+                    initTable();
+                    ((TextView)findViewById(R.id.textView6)).setText(player_2.name + ", place your ships");
+                    applyTheme.setInvisible(R.id.OkButton);
+                }
                 return false;
             };
         };
     };
 
-    class GameHandler {
+    private class GameHandler {
         boolean firstPlayerTurn;
         boolean ableToDoStep;
         String cellStrName1 = "pt";
@@ -1037,29 +1286,29 @@ public class MainActivity extends AppCompatActivity {
         void gameSetLayoutParams() {
             int w = (getDisplayWidth())/2-10;
             (findViewById(R.id.GridLayout)).setY((getDisplayHeight()-w)/2);
-            setLayoutWidth(R.id.PlayerTable, w);
-            setLayoutWidth(R.id.EnemyTable, w);
+            setViewWidth(R.id.PlayerTable, w);
+            setViewWidth(R.id.EnemyTable, w);
             int h = w/10;
-            setLayoutHeight(R.id.ll1, h);
-            setLayoutHeight(R.id.ll2, h);
-            setLayoutHeight(R.id.ll3, h);
-            setLayoutHeight(R.id.ll4, h);
-            setLayoutHeight(R.id.ll5, h);
-            setLayoutHeight(R.id.ll6, h);
-            setLayoutHeight(R.id.ll7, h);
-            setLayoutHeight(R.id.ll8, h);
-            setLayoutHeight(R.id.ll9, h);
-            setLayoutHeight(R.id.ll0, h);
-            setLayoutHeight(R.id.ll10, h);
-            setLayoutHeight(R.id.ll20, h);
-            setLayoutHeight(R.id.ll30, h);
-            setLayoutHeight(R.id.ll40, h);
-            setLayoutHeight(R.id.ll50, h);
-            setLayoutHeight(R.id.ll60, h);
-            setLayoutHeight(R.id.ll70, h);
-            setLayoutHeight(R.id.ll80, h);
-            setLayoutHeight(R.id.ll90, h);
-            setLayoutHeight(R.id.ll100, h);
+            setViewHeight(R.id.ll1, h);
+            setViewHeight(R.id.ll2, h);
+            setViewHeight(R.id.ll3, h);
+            setViewHeight(R.id.ll4, h);
+            setViewHeight(R.id.ll5, h);
+            setViewHeight(R.id.ll6, h);
+            setViewHeight(R.id.ll7, h);
+            setViewHeight(R.id.ll8, h);
+            setViewHeight(R.id.ll9, h);
+            setViewHeight(R.id.ll0, h);
+            setViewHeight(R.id.ll10, h);
+            setViewHeight(R.id.ll20, h);
+            setViewHeight(R.id.ll30, h);
+            setViewHeight(R.id.ll40, h);
+            setViewHeight(R.id.ll50, h);
+            setViewHeight(R.id.ll60, h);
+            setViewHeight(R.id.ll70, h);
+            setViewHeight(R.id.ll80, h);
+            setViewHeight(R.id.ll90, h);
+            setViewHeight(R.id.ll100, h);
         }
 
         void updateContent()
@@ -1147,8 +1396,10 @@ public class MainActivity extends AppCompatActivity {
         private final View.OnTouchListener NextPlayerListener = new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (motionEvent.getAction() == MotionEvent.ACTION_UP)
+                if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                    firstPlayerTurn=!firstPlayerTurn;
                     toNextPlayer();
+                }
                 return false;
             }
         };
@@ -1200,7 +1451,6 @@ public class MainActivity extends AppCompatActivity {
                     if (info==0)
                     {
                         findViewById(R.id.NextButton).setVisibility(View.VISIBLE);
-                        firstPlayerTurn=!firstPlayerTurn;
                         ableToDoStep=false;
                     }
                     checkEndOfGame();
@@ -1217,8 +1467,10 @@ public class MainActivity extends AppCompatActivity {
                 applyTheme.all(currentLocation);
                 if (player_1.shipsLeftInGame == 0) {
                     ((TextView)findViewById(R.id.textView6)).setText(player_1.name+ ", you won");
+//                    player_1.increseRating();
                 } else {
                     ((TextView)findViewById(R.id.textView6)).setText(player_2.name+ ", you won");
+//                    player_2.increaseRating();
                 }
                 findViewById(R.id.PlayAgainButton).setOnTouchListener(PlayAgainListener);
                 findViewById(R.id.MainMenuButton).setOnTouchListener(BackButton_listener);
@@ -1377,7 +1629,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.RelativeLayout).setOnTouchListener(ThemeButtonListener);
     }
 
-    private void setLayoutHeight(int id, int newHeight) {
+    private void setViewHeight(int id, int newHeight) {
         // Gets layout
         View layout = findViewById(id);
         // Gets the layout params that will allow you to resize the layout
@@ -1387,7 +1639,7 @@ public class MainActivity extends AppCompatActivity {
         layout.setLayoutParams(params);
     }
 
-    private void setLayoutWidth(int id, int newWidth) {
+    private void setViewWidth(int id, int newWidth) {
         // Gets layout
         View layout = (View)findViewById(id);
         // Gets the layout params that will allow you to resize the layout
@@ -1457,20 +1709,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_input_ships);
         applyTheme.all(currentLocation);
         int stp = getDisplayWidth()/10;
-        setLayoutHeight(R.id.ll1, stp);
-        setLayoutHeight(R.id.ll2, stp);
-        setLayoutHeight(R.id.ll3, stp);
-        setLayoutHeight(R.id.ll4, stp);
-        setLayoutHeight(R.id.ll5, stp);
-        setLayoutHeight(R.id.ll6, stp);
-        setLayoutHeight(R.id.ll7, stp);
-        setLayoutHeight(R.id.ll8, stp);
-        setLayoutHeight(R.id.ll9, stp);
-        setLayoutHeight(R.id.ll10, stp);
+        setViewHeight(R.id.ll1, stp);
+        setViewHeight(R.id.ll2, stp);
+        setViewHeight(R.id.ll3, stp);
+        setViewHeight(R.id.ll4, stp);
+        setViewHeight(R.id.ll5, stp);
+        setViewHeight(R.id.ll6, stp);
+        setViewHeight(R.id.ll7, stp);
+        setViewHeight(R.id.ll8, stp);
+        setViewHeight(R.id.ll9, stp);
+        setViewHeight(R.id.ll10, stp);
 
         shipsInput = new ShipsInput();
-        player_1 = new player_info(playername1);
-        player_2 = new player_info(playername2);
+        player_1 = new Player(playername1);
+        player_2 = new Player(playername2);
         shipsInput.initTable();
         ((TextView)findViewById(R.id.textView6)).setText(player_1.name + ", place your ships");
     }
